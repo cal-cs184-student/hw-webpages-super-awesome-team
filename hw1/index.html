@@ -47,9 +47,10 @@
 		We've already added one heading per task, to make your write-up as navigable when grading. Please fit your write-up within these sections!
 		-->
 
-		<!-- TODO -->
-		<h2>TODO Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		<h2>Overview</h2>
+		<p>
+			This write-up covers the implementation and analysis of various texture mapping techniques from Homework 1 for CS184/284A Spring 2025. Key topics include pixel sampling, level sampling with mipmaps, barycentric interpolation, and supersampling for antialiasing. The transformations, texture mapping, and rasterization parts were cool, offering valuable insights into balancing performance and visual quality.
+		  </p>
 
 		<h2>Task 1: Drawing Single-Color Triangles</h2>
 		<p>Rasterizing a triangle involves determining which pixels should be filled to represent the shape on the screen accurately. The process begins by computing the bounding box of the triangle. This is done by finding the minimum and maximum x and y coordinates among the three triangle vertices, establishing a rectangular region that fully contains the triangle. This bounding box helps optimize the rasterization process by limiting the number of pixels that need to be checked. </p>
@@ -314,6 +315,42 @@
       <li>Uses the highest resolution mipmap level with nearest-pixel sampling.</li>
       <li>Produces sharp but potentially aliased images with noticeable pixelation.</li>
       <li>Offers good performance but poor visual smoothness.</li>
+	  <img src="task6.1.png" width="400px"/>
+    </ul>
+  </li>
+  <li><strong>LZERO + PLINEAR:</strong>
+    <ul>
+		<li>Uses the highest resolution mipmap level with bilinear interpolation.</li>
+		<li>Reduces aliasing but retains high detail.</li>
+		<li>Good for rendering high-resolution graphics (quality).</li>
+	  <img src="task6.2.png" width="400px"/>
+    </ul>
+  </li>
+  <li><strong>LNEAREST + PNEAREST</strong>
+    <ul>
+		<li>Uses the closest mipmap level based on change of pixel space to change of texture space ratio with nearest-pixel sampling.</li>
+		<li>Provides a balance between performance and quality.</li>
+		<li>Good for performance and memory efficiency.</li>
+	  <img src="task6.3.png" width="400px"/>
+    </ul>
+  </li>
+  <li><strong>LNEAREST + PLINEAR</strong>
+    <ul>
+		<li>Uses the closest mipmap level based on change of pixel space to change of texture space ratio with bilinear interpolation sampling.</li>
+		<li>Smoothest textures with reduced aliasing and fewer blocky textures.</li>
+		<li>Good for balancing performance, memory efficiency, and visual quality.</li>
+		<li>Good for real-time rendering in video games.</li>
+	  <img src="task6.4.png" width="400px"/>
+    </ul>
+  </li>
+  <li><strong>LLINEAR + PLINEAR (Trilinear Filtering)</strong>
+    <ul>
+		<li>Combines both bilinear pixel interpolation sampling and bilinear level interpolation.</li>
+		<li>Smoother transitions and reduces artifacts.</li>
+		<li>Very intensive in computation.</li>
+		<li>Very high in memory usage.</li>
+		<li>Very good for quality.</li>
+	  <img src="task6.5.png" width="400px"/>
     </ul>
   </li>
 </ul>
@@ -323,10 +360,10 @@
 <h3>Conclusion</h3>
 	<p>In summary, the choice of sampling techniques significantly impacts both performance and visual quality. Level Zero with Nearest Pixel prioritizes high detail and speed but can result in blocky artifacts. Level Zero with Bilinear Interpolation offers superior visual quality but requires more computation. Nearest Level with Nearest Pixel is efficient in performance and memory but may produce noticeable level transitions. Nearest Level with Bilinear Interpolation strikes a balance between performance, memory efficiency, and visual quality, providing smoother transitions and fewer artifacts. Ultimately, the best combination depends on whether you prioritize performance, visual quality, or a balanced approach.
 	</p>
-		<h2>(Optional) Task 7: Extra Credit - Draw Something Creative!</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<!-- <h2>(Optional) Task 7: Extra Credit - Draw Something Creative!</h2>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. -->
 
-		<h2>Additional Notes (please remove)</h2>
+		<!-- <h2>Additional Notes (please remove)</h2>
 		<ul>
 			<li>You can also add code if you'd like as so: <code>code code code</code></li>
 			<li>If you'd like to add math equations, 
@@ -335,7 +372,7 @@
 					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
 				</ul>
 			</li>
-		</ul>
+		</ul> -->
 		</div>
 	</body>
 </html>

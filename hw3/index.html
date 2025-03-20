@@ -73,9 +73,9 @@
 		</ul> -->
 
 		<h2>Part 1: Ray Generation and Primitive Intersection</h2>
-		Walk through the ray generation and primitive intersection parts of the rendering pipeline.
+		<i>Walk through the ray generation and primitive intersection parts of the rendering pipeline.
 		Explain the triangle intersection algorithm you implemented in your own words.
-		Show images with normal shading for a few small .dae files.
+		Show images with normal shading for a few small .dae files.</i>
 		To generate rays from the camera, we transform coordinates from image space to camera space and then to world space. The camera is modeled as a pinhole camera, with its position at the origin in camera space and its sensor placed at (0, 0, -1). Given the unrendered corners (x,y) = (0,0) and (1,1), we converted to camera space using the horizontal and vertical field of view parameters (hFov and vFov, which are the view angles along the X and Y axes respectively). After that, we transform the image in camera space and offset our camera sensor by -1 in the Z-coordinate. The diagram summarizes the transformations as shown below:
 		\[
 		(0,0,-1) \rightarrow (-\tan(hFov/2) \cdot x_{imagespace}, -\tan(hFov/2) \cdot y_{imagespace}, -1)
@@ -125,7 +125,7 @@
 		</div>
 
 		<h2>Part 2: Bounding Volume Hierarchy</h2>
-		Walk through your BVH construction algorithm. Explain the heuristic you chose for picking the splitting point.
+		<i>Walk through your BVH construction algorithm. Explain the heuristic you chose for picking the splitting point.</i>
 		Show images with normal shading for a few large .dae files that you can only render with BVH acceleration.
 		Compare rendering times on a few scenes with moderately complex geometries with and without BVH acceleration. Present your results in a one-paragraph analysis.
 
@@ -159,10 +159,10 @@
 		A comparison of rendering times with and without BVH acceleration highlights the dramatic performance improvement. For example, rendering the banana.dae, dragon.dae, maxplanck.dae, and beast.dae scenes without BVH took me 3567.1536, 3651.2313, 335.6972, and 410.2534 seconds, respectively with my NVIDIA GeForce RTX 3060 Laptop GPU (I went on “AFK” mode). With BVH acceleration, these times dropped to 0.1131, 0.01643, 0.1183, and 0.0825 seconds, respectively. This data demonstrates that BVH acceleration is indispensable for rendering scenes with moderately complex geometries, as it reduces render times by orders of magnitude. The hierarchical structure of the BVH allows the renderer to efficiently cull large portions of the scene that are not intersected by a ray, focusing computational resources only on relevant primitives. This optimization is particularly crucial for real-time rendering and scenes with high geometric complexity.
 
 		<h2>Part 3: Direct Illumination</h2>
-		Walk through both implementations of the direct lighting function.
+		<i>Walk through both implementations of the direct lighting function.
 		Show some images rendered with both implementations of the direct lighting function.
 		Focus on one particular scene with at least one area light and compare the noise levels in soft shadows when rendering with 1, 4, 16, and 64 light rays (the -l flag) and with 1 sample per pixel (the -s flag) using light sampling, not uniform hemisphere sampling.
-		Compare the results between uniform hemisphere sampling and lighting sampling in a one-paragraph analysis.
+		Compare the results between uniform hemisphere sampling and lighting sampling in a one-paragraph analysis.</i>
 
 		The direct lighting function plays a crucial role in estimating how light interacts with surfaces in a scene. Two approaches were implemented to achieve this: uniform hemisphere sampling and importance sampling of light sources. Both methods rely on Monte Carlo integration to approximate the light contribution at a given point, but they differ in how they sample light directions. The equation of the function is shown below:
 		\[
@@ -198,13 +198,23 @@
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
+				<th style="text-align: center;">Uniform Hemisphere Sampling</th>
+				<th style="text-align: center;">Light Importance Sampling</th>
+			  </tr>
+			  <tr>
 				<td style="text-align: center;">
 				  <img src="uniform_hemisphere.png" width="400px"/>
-				  <figcaption>Uniform Hemisphere Sampling</figcaption>
 				</td>
 				<td style="text-align: center;">
 				  <img src="importance_sampling.png" width="400px"/>
-				  <figcaption>Light Importance Sampling</figcaption>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align: center;">
+				  <img src="uniform_hemisphere1.png" width="400px"/>
+				</td>
+				<td style="text-align: center;">
+				  <img src="importance_sampling1.png" width="400px"/>
 				</td>
 			  </tr>
 			</table>
@@ -252,7 +262,7 @@
 			This goes to show the importance of increasing the number of light rays to reduce noise in soft shadows.
 		</p>
 		<h2>Part 4: Global Illumination</h2>
-		<p>Walk through your implementation of the indirect lighting function.</p>
+		<p><i>Walk through your implementation of the indirect lighting function.</i></p>
 		<p>Global illumination simulates realistic lighting by accounting for both direct and indirect light contributions. While direct lighting computes light arriving directly from light sources, indirect lighting captures light that bounces off surfaces before reaching the camera. This is achieved through recursive ray tracing, where rays are cast from surface intersections to gather light contributions from other surfaces. The indirect lighting function works as follows:</p>
 		<ul>
 		  <li>At each surface intersection, a new ray is generated with its origin at the intersection point and its direction sampled using the BSDF’s sample_f function. This direction determines where the ray will bounce next.</li>
@@ -473,7 +483,7 @@
 		<p>With that being said, Global illumination enhances realism by simulating both direct and indirect lighting. Recursive ray tracing, combined with Monte Carlo estimation and Russian Roulette, enables efficient computation of light bounces. Higher sample rates and ray depths improve image quality but with diminishing returns. Global illumination has a tradeoff between accuracy and computational cost.</p>
 		
 		<h2>Part 5: Adaptive Sampling</h2>
-		<p>Explain adaptive sampling. Walk through your implementation of the adaptive sampling.</p>
+		<p><i>Explain adaptive sampling. Walk through your implementation of the adaptive sampling.</i></p>
 		<p>Adaptive sampling is a technique used in Monte Carlo path tracing to optimize rendering efficiency by dynamically adjusting the number of samples per pixel based on how quickly the pixel’s illuminance converges. Instead of using a fixed, high number of samples for all pixels, adaptive sampling focuses computational resources on regions of the image that require more samples to reduce noise, while terminating sampling early for pixels that have already converged. This approach significantly reduces rendering time without sacrificing image quality. The adaptive sampling algorithm works as follows:</p>
 		<ul>
 		  <li>For each pixel, the algorithm computes a confidence interval to determine whether the pixel’s illuminance has converged. The confidence interval is given by:

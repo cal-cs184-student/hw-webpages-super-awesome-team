@@ -28,82 +28,348 @@
 	<body>
 		<div class="container">
 		<h1>CS184/284A Spring 2025 Homework 4 Write-Up</h1>
-		<div style="text-align: center;">Names: </div>
+		<div style="text-align: center;">Names: Lionel Verano, Jordan Argel</div>
 
 		<br>
 
-		Link to webpage: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
-
-		<br>
-
-		Link to GitHub repository: (TODO) <a href="https://cs184.eecs.berkeley.edu/sp25">cs184.eecs.berkeley.edu/sp25</a>
-
+		Link to webpage: <a href="https://cal-cs184-student.github.io/hw-webpages-super-awesome-team/hw4/index.html">cal-cs184-student.github.io/hw-webpages-super-awesome-team/hw3/index.html</a>
+		Link to GitHub repository: <a href="https://github.com/cal-cs184-student/hw-webpages-super-awesome-team">Github</a>
+		</br>
 		<figure>
 			<img src="clothsim.png" alt="Cloth draped over sphere" style="width:70%"/>
-			<figcaption>You can add images with captions!</figcaption>
+			<figcaption>Cloth simulation with all constraints enabled</figcaption>
 		</figure>
 
-		<!--
-		We've already added one heading per part, to make your write-up as navigable when grading. Please fit your write-up within these sections!
-		-->
-
 		<h2>Overview</h2>
-		Give a high-level overview of what you implemented in this homework. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the homework.
+		<p>In ClothSim, we implemented a real-time cloth simulation using a mass-and-spring system. The assignment involved building data structures to represent the cloth, applying physical constraints, and using numerical integration to simulate realistic cloth movement over time. Key components included handling collisions with external objects and self-collisions to prevent clipping. The project also incorporated shaders to enhance visual realism.</p>
 
 		<h2>Part 1: Masses and springs</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-		<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+		<figcaption>Wireframe views of scene/pinned2.json showing different spring constraint configurations</figcaption>
+		<table style="width: 100%; text-align: center; border-collapse: collapse;">
+			<tr>
+			  <td style="text-align: center;">
+				<img src="part1angle1.png" width="400px"/>
+			  </td>
+			  <td style="text-align: center;">
+				<img src="part1angle2.png" width="400px"/>
+			  </td>
+			</tr>
+			<tr>
+			  <td style="text-align: center; colspan="2">
+				<img src="part1angle3.png" width="400px"/>
+			  </td>
+			</tr>
+		  </table>
+
+		<p>We implemented a cloth simulation using a mass-spring system with different constraint types:</p>
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<table style="width: 100%; text-align: center; border-collapse: collapse;">
 			  <tr>
 				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="no_shearing.png" width="400px"/>
+				  <figcaption>No Shearing Constraints: Only vertical and horizontal lines visible</figcaption>
 				</td>
 				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				  <img src="only_shearing.png" width="400px"/>
+				  <figcaption>Only Shearing Constraints: Only diagonal lines visible</figcaption>
 				</td>
 			  </tr>
 			  <tr>
-				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
-				</td>
-				<td style="text-align: center;">
-				  <img src="clothsim.png" width="400px"/>
-				  <figcaption>Caption goes here.</figcaption>
+				<td style="text-align: center; colspan="2">
+				  <img src="all_constraints.png" width="400px"/>
+				  <figcaption>All Constraints: Full grid with structural, shearing, and bending springs</figcaption>
 				</td>
 			  </tr>
 			</table>
 		</div>
 
 		<h2>Part 2: Simulation via numerical integration</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>Part 3: Handling collisions with other objects</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>Part 4: Handling self-collisions</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>Part 5: Shaders</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<h2>(Optional) Part 6: Extra Credit - Additional cloth simulation features!</h2>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<figure>
+			<img src="part2figure.png">
+		</figure>
+		<p>At final resting state, the cloth drapes naturally under gravity with pinned corners creating symmetric folds. It settles after ~5 seconds with minor oscillations.</p>
 		
-		<h2>Additional Notes (please remove)</h2>
+		<h3>Parameters:</h3>
 		<ul>
-			<li>You can also add code if you'd like as so: <code>code code code</code></li>
-			<li>If you'd like to add math equations, 
+			<li><b>ks (spring stiffness):</b>
 				<ul>
-					<li>You can write inline equations like so: \( a^2 + b^2 = c^2 \)</li>
-					<li>You can write display equations like so: \[ a^2 + b^2 = c^2 \]</li>
+					
+					<li>Low ks (500): Cloth stretches easily, sagging under gravity</li>
+					<img src="springstiffnesslow.png">
+					
+					<li>High ks (50000): Cloth resists deformation, appears rigid</li>
+					<img src="springstiffnesshigh.png">
+
+				</ul>
+			</li>
+			<li><b>Density:</b>
+				<ul>
+					
+					<li>Low (1.5): Cloth floats down slowly like silk</li>
+					<img src="densityheavierclothlow.png">
+					
+					<li>High (150): Cloth falls aggressively like denim</li>
+					<img src="denstiyheavierclothhigh.png">
+				</ul>
+			</li>
+			<li><b>Damping:</b>
+				<ul>
+					
+					<li>Low (0%): Cloth oscillates endlessly</li>
+					<img src="dampingheavierclothlow.png">
+					
+					<li>High (1%): Cloth settles quickly but looks sluggish</li>
+					<img src="dampingheavierclothhigh.png">
+
+						
+					<li>Coth practically stiffens mid-fall</li>
+					<img src="part2figure2.png">
 				</ul>
 			</li>
 		</ul>
+
+		<h2>Part 3: Handling collisions with other objects</h2>
+		<h3>Implementation Details:</h3>
+		<h4>Sphere Collision:</h4>
+		<ul>
+			<li>Check if a point mass is inside the sphere (dist < radius)</li>
+			<li>Compute the tangent point (where the point should rest on the sphere's surface)</li>
+			<li>Adjust the position using:
+				<code>pm.position = pm.last_position + (1.0 - friction) * (tangent_point - pm.last_position)</code>
+			</li>
+			<li>Friction scales the correction to simulate energy loss</li>
+		</ul>
+
+		<h4>Plane Collision:</h4>
+		<ul>
+			<li>Check if a point mass crossed the plane (sign change in dot(pm.position - point, normal))</li>
+			<li>Find the intersection point with the plane</li>
+			<li>Apply a small SURFACE_OFFSET to prevent sticking</li>
+			<li>Adjust position with friction using:
+				<code>pm.position = pm.last_position + (1.0 - friction) * (tangent_point + offset - pm.last_position)</code>
+			</li>
+		</ul>
+		<figure><img src="part3figure.png">
+			<figcaption>Cloth settles smoothly onto the plane while friction prevents sliding.</figcaption></figure>
+		
+
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+					<td style="text-align: center;">
+						<img src="ks_500.png" width="300px"/>
+						<figcaption>Ks = 500: Cloth stretches excessively, saggy loose folds</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="ks_5000.png" width="300px"/>
+						<figcaption>Ks = 5,000: Balanced drape, natural wrinkles</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="ks_50000.png" width="300px"/>
+						<figcaption>Ks = 50,000: Rigid, "floaty" appearance, minimal folding</figcaption>
+					</td>
+				</tr>
+			</table>
 		</div>
+		<p>Low ks cause overstretching, while high ks resist deformation. Provot correction keeps springs intact during collisions.</p>
+
+		<h2>Part 4: Handling self-collisions</h2>
+		<figure><img src="part4figure.png"></figure>
+		<h3>Implementation Details:</h3>
+		<p>To prevent cloth clipping through itself, we use spatial hashing (an efficient alternative to brute-force pairwise checks).</p>
+
+		<h4>Cloth::hash_position</h4>
+		<ul>
+			<li>Partition 3D space into uniform cells (dimensions: w = 3 * width/num_width_points, h = 3 * height/num_height_points, t = max(w, h))</li>
+			<li>Maps a 3D position to a unique cell ID using prime-number hashing:
+				<code>return x * 73856093 ^ y * 19349663 ^ z * 83492791;</code>
+				(primes reduce hash collisions)
+			</li>
+		</ul>
+
+		<h4>Cloth::build_spatial_map</h4>
+		<ul>
+			<li>Groups point masses into spatial cells:
+				<code>float hash = hash_position(pm.position); map[hash]->push_back(&pm);</code>
+			</li>
+		</ul>
+
+		<h4>Cloth::self_collide</h4>
+		<ul>
+			<li>For each point mass, find nearby masses via spatial hash lookup</li>
+			<li>Apply repulsive corrections if distances < 2 * thickness:
+				<code>Vector3D correction = (2 * thickness - dist) * dir.unit();</code>
+			</li>
+			<li>Average corrections and scale by 1/simulation_steps for stability</li>
+		</ul>
+
+		<h3>Self-Collision Stages:</h3>
+
+<h4>Early Self-Collision:</h4>
+<p>Initial folds form as cloth collapses</p>
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <table style="width: 100%; text-align: center; border-collapse: collapse;">
+        <tr>
+            <td style="text-align: center;">
+                <img src="early_5_8000.png" width="300px"/>
+                <figcaption>density: 5 g/cm², ks: 8000 N/m</figcaption>
+            </td>
+            <td style="text-align: center;">
+                <img src="early_15_2000.png" width="300px"/>
+                <figcaption>density: 15 g/cm², ks: 2000 N/m</figcaption>
+            </td>
+            <td style="text-align: center;">
+                <img src="early_15_8000.png" width="300px"/>
+                <figcaption>density: 15 g/cm², ks: 8000 N/m</figcaption>
+            </td>
+        </tr>
+    </table>
+</div>
+
+		<h4>Initial Self-Collision:</h4>
+		<p>Complex self-interactions create wrinkles</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+					<td style="text-align: center;">
+						<img src="initial_5_8000.png" width="300px"/>
+						<figcaption>density: 5 g/cm², ks: 8000 N/m</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="initial_15_2000.png" width="300px"/>
+						<figcaption>density: 15 g/cm², ks: 2000 N/m</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="initial_15_8000.png" width="300px"/>
+						<figcaption>density: 15 g/cm², ks: 8000 N/m</figcaption>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<h4>Ending Self-Collision:</h4>
+		<p>Cloth settles (may remain slightly bouncy)</p>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+					<td style="text-align: center;">
+						<img src="ending_5_8000.png" width="300px"/>
+						<figcaption>density: 5 g/cm², ks: 8000 N/m</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="ending_15_2000.png" width="300px"/>
+						<figcaption>density: 15 g/cm², ks: 2000 N/m</figcaption>
+					</td>
+					<td style="text-align: center;">
+						<img src="ending_15_8000.png" width="300px"/>
+						<figcaption>density: 15 g/cm², ks: 8000 N/m</figcaption>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<h3>Parameter Effects:</h3>
+		<ul>
+			<li><b>Low ks:</b> Cloth stretches excessively, forming deep folds. Self-collisions are less resolved (more overlap)</li>
+			<li><b>High ks:</b> Cloth resists folding, appearing stiff. Fewer wrinkles, but cleaner collisions</li>
+			<li><b>Low density (5 g/cm²):</b> Cloth falls slowly, drapes softly</li>
+			<li><b>High density (15 g/cm²):</b> Rapid drop with heavy, pronounced folds</li>
+		</ul>
+
+		<h2>Part 5: Shaders</h2>
+
+		<h3>Shader Overview</h3>
+		<p>A GPU program that processes vertices (vertex shader) or pixels (fragment shader) in parallel.</p>
+		
+		<h3>Blinn-Phong Shading Model</h3>
+		<p>\[ L = k_aI_a + k_d\left(\frac{I}{r^2}\right)\max(0,n \cdot l) + k_s\left(\frac{I}{r^2}\right)\max(0,n \cdot h)^p \]</p>
+		
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+					<td style="padding: 20px;">
+						<img src="ambient_component.png" width="300px" alt="Ambient lighting"/>
+						<figcaption><b>Ambient Component</b><br>Flat base lighting (no shadows)</figcaption>
+					</td>
+					<td style="padding: 20px;">
+						<img src="diffuse_component.png" width="300px" alt="Diffuse lighting"/>
+						<figcaption><b>Diffuse Component</b><br>Lambertian reflectance</figcaption>
+					</td>
+					<td style="padding: 20px;">
+						<img src="specular_component.png" width="300px" alt="Specular highlights"/>
+						<figcaption><b>Specular Component</b><br>Glossy highlights (view-dependent)</figcaption>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="padding: 20px;">
+						<img src="part5figure.png" width="600px" alt="Complete Blinn-Phong shading"/>
+						<figcaption><b>Combined Blinn-Phong Shading</b><br>All components working together</figcaption>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<h3>Texture Mapping</h3>
+		
+		<h3>Bump vs. Displacement Mapping</h3>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+					<td style="padding: 15px;">
+						<img src="bump_mapping_closeup.png" width="350px" alt="Bump mapping"/>
+						<img src="bump_wireframe.png" width="350px" alt="Bump mapping wireframe"/>
+						<figcaption><b>Bump Mapping</b><br>Surface normals modified without geometry change</figcaption>
+					</td>
+					<td style="padding: 15px;">
+						<img src="displacement_mapping_closeup.png" width="350px" alt="Displacement mapping"/>
+						<img src="displacement_wireframe.png" width="350px" alt="Displacement wireframe"/>
+						<figcaption><b>Displacement Mapping</b><br>Actual geometry displacement</figcaption>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<h3>Sphere Coarseness Comparison</h3>
+		<div style="display: flex; flex-direction: column; align-items: center;">
+			<table style="width: 100%; text-align: center; border-collapse: collapse;">
+				<tr>
+					<td style="padding: 15px;">
+						<img src="low_res_sphere_rendered.png" width="300px" alt="Low-res sphere"/>
+						<img src="low_res_wireframe.png" width="300px" alt="Low-res wireframe"/>
+						<figcaption><b>Low-Res Sphere (-o 16 -a 16)</b><br>Visible artifacts in displacement mapping</figcaption>
+					</td>
+					<td style="padding: 15px;">
+						<img src="high_res_sphere_rendered.png" width="300px" alt="High-res sphere"/>
+						<img src="high_res_wireframe.png" width="300px" alt="High-res wireframe"/>
+						<figcaption><b>High-Res Sphere (-o 128 -a 128)</b><br>Smooth displacement results</figcaption>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<h3>Mirror Shader Implementation</h3>
+		<img src="part5figure2.png">
+		<img src="part5figure3.png">
+		<h3>Custom Shader Composition</h3>
+		<ul>
+			<li><b>Base Layers:</b>
+				<ul>
+					<li>Diffuse (u_texture_1)</li>
+					<li>Normal (u_texture_2)</li>
+					<li>Roughness (u_texture_3)</li>
+					<li>Ambient Occlusion (u_texture_4)</li>
+				</ul>
+			</li>
+			<li><b>Features:</b>
+				<ul>
+					<li>Bump-mapped surface wrinkles</li>
+					<li>Roughness-controlled specular highlights</li>
+					<li>Subtle environment reflections (30% intensity)</li>
+					<li>Texture-size-aware sampling optimization</li>
+				</ul>
+			</li>
+			<figure><img src="part5custom.png"> <img src="part5custom2.png"></figure>
+		</ul>
 	</body>
 </html>
